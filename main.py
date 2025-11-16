@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -39,4 +40,18 @@ def items2(item_name2: str, item_price2: float):
     return {
         "return_param1": item_name2,
         "return_param2": item_price2
+    }
+
+
+# pydantic base model
+
+class temp(BaseModel):
+    data1: str
+    data2: int
+    data3: float
+
+@app.post("/temp2")
+def temp2(dummy: temp):
+    return{
+        "my_data": dummy
     }
